@@ -146,7 +146,7 @@
                     </table>
                     <div class="row-flex">
                         <div style="display: flex; flex-grow: 1; height:auto;">
-                            <a class="button-group" href="display.php">Back</a>
+                            <a class="button-group" href="index.php">Back</a>
                         </div>
                         <div style="display: flex; flex-grow: 1;">
                             <button class="button-group" type="reset">Reset</button>

@@ -15,49 +15,51 @@
     </script>
 </head>
 <body>
-    <div class="app">
-        <h1>Panel</h1>
-        <a href="form.php" class="button">
-            <p><i class="ri-add-fill" style="color: white;" alt=""></i>Add New Data</p>
-        </a>
-        <table border="1" cellpadding="10" cellspacing="0">
-            <tr>
-                <th>NIK</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-            <?php
-            include 'connection.php';
-
-            // Using prepared statements for security
-            $query = "SELECT nik, name FROM e_ktp";
-            if ($stmt = $conn->prepare($query)) {
-                $stmt->execute();
-                $stmt->bind_result($nik, $name);
-
-                // Displaying data
-                while ($stmt->fetch()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($nik) . "</td>";
-                    echo "<td>" . htmlspecialchars($name) . "</td>";
-                    echo "<td>
-                        <a href='details.php?nik=" . urlencode($nik) . "'><i class='ri-eye-line' style='font-size:1.5em;' alt='view'></i></a>
-                        <span style='font-size:1.5em;'>|</span>
-                        <a href='edit.php?nik=" . urlencode($nik) . "'><i class='ri-pencil-fill' style='font-size:1.5em;' alt='edit'></i></a>
-                        <span style='font-size:1.5em;'>|</span>
-                        <a href='#' onclick='confirmDelete(\"" . htmlspecialchars($nik) . "\")'><i class='ri-delete-bin-fill' style='font-size:1.5em;' alt='delete'></i></a>
-                    </td>";
-                    echo "</tr>";
+    <div class="center" style="min-height: 100vh; margin: 0 3%;">
+        <div class="app" id="index">
+            <h1>E-KTP Panel</h1>
+            <a href="form.php" class="button">
+                <p><i class="ri-add-fill" style="color: white;" alt=""></i>Add New Data</p>
+            </a>
+            <table border="1" cellpadding="10" cellspacing="0">
+                <tr>
+                    <th>NIK</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                <?php
+                include 'connection.php';
+    
+                // Using prepared statements for security
+                $query = "SELECT nik, name FROM e_ktp";
+                if ($stmt = $conn->prepare($query)) {
+                    $stmt->execute();
+                    $stmt->bind_result($nik, $name);
+    
+                    // Displaying data
+                    while ($stmt->fetch()) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($nik) . "</td>";
+                        echo "<td>" . htmlspecialchars($name) . "</td>";
+                        echo "<td>
+                            <a href='details.php?nik=" . urlencode($nik) . "'><i class='ri-eye-line' style='font-size:1.5em;' alt='view'></i></a>
+                            <span style='font-size:1.5em;'>|</span>
+                            <a href='edit.php?nik=" . urlencode($nik) . "'><i class='ri-pencil-fill' style='font-size:1.5em;' alt='edit'></i></a>
+                            <span style='font-size:1.5em;'>|</span>
+                            <a href='#' onclick='confirmDelete(\"" . htmlspecialchars($nik) . "\")'><i class='ri-delete-bin-fill' style='font-size:1.5em;' alt='delete'></i></a>
+                        </td>";
+                        echo "</tr>";
+                    }
+    
+                    $stmt->close();
+                } else {
+                    echo "<tr><td colspan='3'>Error fetching records.</td></tr>";
                 }
-
-                $stmt->close();
-            } else {
-                echo "<tr><td colspan='3'>Error fetching records.</td></tr>";
-            }
-
-            $conn->close();
-            ?>
-        </table>
+    
+                $conn->close();
+                ?>
+            </table>
+        </div>
     </div>
 </body>
 </html>

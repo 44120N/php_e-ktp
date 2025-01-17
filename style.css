@@ -11,10 +11,6 @@
 
 body {
     min-height: 100vh;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
 }
@@ -25,7 +21,6 @@ body {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    margin: 4% 8%;
 }
 
 .button {
@@ -74,12 +69,17 @@ table {
     table-layout: auto;
 }
 
-th:nth-child(3), td:nth-child(3) {
-    width: 70%;
+#index table, #index tr, #index th, #index td {
+    border: 2px solid black;
 }
 
 tr {
     margin-bottom: 1%;
+}
+
+th {
+    background-color: #5555ff;
+    color: white;
 }
 
 th, td {
@@ -98,7 +98,9 @@ label {
 input[type="email"],
 input[type="tel"],
 input[type="number"],
-input[type="text"] {
+input[type="text"],
+input[type="date"],
+textarea {
     width: 100%;
     padding: 1%;
     border: 1px solid #ccc;
@@ -249,4 +251,11 @@ option {
 .flex-grid{
     display: flex;
     justify-content: space-between;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
